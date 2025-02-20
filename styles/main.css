@@ -1,0 +1,606 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Noto+Sans+Javanese:wght@400..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  /* Colors */
+  --primary: #3b88ff;
+  --secondary: #f4f4f4;
+  --accent: #fcbf49;
+  --pp: #a60874;
+  --gry: #a60874;
+  --grn: #7bffb3;
+  --dark: #121212;
+
+  /* Screen Sizes */
+  --sm: 640px;
+  --md: 768px;
+  --lg: 1024px;
+  --xl: 1280px;
+
+  /* font family */
+  --basic-font: ui-sans-serif, system-ui;
+  --open-sans: "Open Sans", sans-serif;
+  --lato: "Lato", sans-serif;
+  --roboto: "Roboto", sans-serif;
+  --script: "Caveat", cursive;
+
+  /* transition */
+  --transition-duration: 0.5s;
+  --transition-timing: ease-in-out;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+.material-symbols-outlined {
+  font-family: "Material Symbols Outlined", sans-serif;
+  font-weight: 900;
+  cursor: pointer;
+  font-size: 2rem;
+}
+
+.script-font {
+  font-family: var(--script);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--grn);
+}
+
+.noto-sans {
+  font-family: "Noto Sans Javanese", sans-serif;
+}
+
+.poppins {
+  font-family: "Poppins", sans-serif;
+}
+
+/* .dark {
+  color: var(--dark);
+} */
+
+.absolute {
+  position: absolute;
+}
+
+html,
+.switchIcon,
+.eurekaLogo {
+  transition: background-color var(--transition-duration)
+      var(--transition-timing),
+    color var(--transition-duration) var(--transition-timing),
+    transform var(--transition-duration) var(--transition-timing);
+}
+
+.switchIcon {
+  transition: transform var(--transition-duration) var(--transition-timing);
+}
+
+.custom-textarea {
+  overflow: hidden;
+  resize: none;
+}
+
+body {
+  width: 100%;
+  max-width: 1440px;
+  overflow-x: hidden;
+  margin-inline: auto;
+  position: relative;
+  font-family: var(--open-sans);
+  transition: background-color var(--transition-duration)
+      var(--transition-timing),
+    color var(--transition-duration) var(--transition-timing),
+    transform var(--transition-duration) var(--transition-timing);
+}
+
+/* Nav BAr */
+
+.navOpen {
+  display: flex;
+}
+
+/* Active state for nav items */
+#nav-bar ul li.active a,
+#mobileNav ul li.active a {
+  color: var(--primary);
+}
+
+.active-mini-nav {
+  color: var(--primary);
+}
+
+.cloud-in {
+  animation: slideIn 0.9s ease-in-out;
+}
+
+.cloud-out {
+  animation: slideOut 1s ease-in-out;
+}
+
+/* Morphisim  */
+.morphism {
+  background: transparent;
+  backdrop-filter: blur(30px);
+}
+
+.particle-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  will-change: transform;
+}
+
+.overlapped {
+  background: #fcaf00;
+  position: relative;
+}
+
+.overlapped::after {
+  content: "";
+  position: absolute;
+  right: -100%;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #fcaf00;
+  z-index: -1;
+}
+
+.slider-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.slider-track {
+  display: flex;
+  gap: 16px;
+  transform: translateX(0);
+}
+
+.slide {
+  min-width: calc(100% / 1); 
+  box-sizing: border-box;
+}
+
+.prev,
+.next {
+    position: absolute;
+    top: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    border-radius: 0.375rem;
+    padding: 0.75rem;
+    z-index: 10;
+    visibility: hidden;
+}
+
+.slider-container:hover .prev,
+.slider-container:hover .next {
+    visibility: visible;
+}
+
+
+/* Blog active class */
+#header ul li.active {
+  border-bottom: 2px solid var(--primary);
+  color: var(--primary);
+}
+
+/* Popups */
+.submit_popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.submit_popup .show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.submit_success {
+  display: none;
+}
+
+.submit_loader img,
+.submit_success img {
+  max-width: 200px;
+}
+
+/* Evemt card */
+.hidden-content {
+  display: none;
+}
+
+#cardContainer {
+  padding: 10px;
+  height: 680px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5em;
+}
+
+.event-card {
+  width: 100%;
+  background: rgba(59, 136, 255, 0.7);
+  color: #fff;
+  padding-inline: 2rem;
+  padding-block-start: 2em;
+  padding-block-end: 0;
+  border-radius: 2rem;
+  transition: height 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+    transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.event-card:nth-child(odd) {
+  background: rgba(166, 8, 116, 0.8); /* rgba format*/
+  /* background: #a6087480; HEX format */
+}
+
+.default {
+  height: 380px;
+}
+
+.expanded {
+  height: 570px;
+}
+
+.collapsed {
+  height: 230px;
+}
+
+.hidden-paragraph {
+  display: none;
+}
+
+/* text animation sign up or registration page */
+.text-flip-container {
+  perspective: 900px;
+}
+
+.text-flip-container2 {
+  perspective: 900px;
+}
+
+#text-container {
+  transition: transform 0.5s, background-color 0.5s, color 0.5s;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transform-origin: center;
+  display: inline-block;
+}
+
+#text-container2 {
+  transition: transform 0.5s, background-color 0.5s, color 0.5s;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transform-origin: center;
+  display: inline-block;
+}
+
+.flip-forward {
+  transform: rotateX(180deg);
+}
+
+.flip-backward {
+  transform: rotateX(-180deg);
+}
+
+.color1 {
+  color: var(--primary);
+}
+
+.color2 {
+  color: var(--accent);
+}
+
+.color3 {
+  color: var(--pp);
+}
+
+/* scrool bar registartion page */
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Slider dots for sign up/registration page */
+.dot {
+  background: #cecaca;
+  width: 10px;
+  height: 10px;
+  margin: 0 4px;
+  border-radius: 50%;
+  display: inline-block;
+  transition: all 0.6s ease;
+}
+
+.dot.active {
+  background-color: var(--primary);
+}
+
+/* Icons for Animation */
+.icurve2 {
+  z-index: 10;
+  animation: fbmovement 1.4s infinite linear;
+}
+
+.mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 100px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    transparent 10%,
+    rgba(255, 255, 255, 1) 10%,
+    rgba(255, 255, 255, 1) 90%,
+    transparent 90%,
+    transparent 100%
+  );
+  animation: slide 1.5s infinite;
+}
+
+.mask1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    transparent 10%,
+    rgba(244, 244, 244, 1) 10%,
+    rgba(244, 244, 244, 1) 90%,
+    transparent 90%,
+    transparent 100%
+  );
+  animation: slide 1.5s infinite;
+}
+
+.mask2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 100px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    transparent 10%,
+    rgba(255, 255, 255, 1) 10%,
+    rgba(255, 255, 255, 1) 90%,
+    transparent 90%,
+    transparent 100%
+  );
+  animation: slide1 1.5s infinite;
+}
+
+
+@media (max-width: 768px) {
+  #cardContainer {
+    height: fit-content;
+  }
+
+  .default {
+    height: fit-content;
+  }
+
+  .expanded {
+    height: fit-content;
+  }
+
+  .collapsed {
+    height: fit-content;
+  }
+  .slide {
+    min-width: calc(100% / 3); 
+    box-sizing: border-box;
+  }
+
+  #signUpPage {
+    background-image: url("../images/team.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+}
+
+@media (min-width: 1024px) {
+  #cardContainer {
+    height: 760px;
+  }
+  .default {
+    height: 360px;
+  }
+
+  .expanded {
+    height: 500px;
+  }
+
+  .collapsed {
+    height: 250px;
+  }
+  .slide {
+    min-width: calc(100% / 3); 
+    box-sizing: border-box;
+  }
+  #signUpPage {
+    background-image: none;
+  }
+}
+
+@media (min-width: 1280px) {
+  #cardContainer {
+    height: 680px;
+  }
+
+  .default {
+    height: 380px;
+  }
+
+  .expanded {
+    height: 570px;
+  }
+
+  .collapsed {
+    height: 230px;
+  }
+  .slide {
+    min-width: calc(100% / 4); 
+    box-sizing: border-box;
+  }
+  #signUpPage {
+    background-image: none;
+  }
+}
+
+/* Animations */
+
+@keyframes slide {
+  0% {
+    transform: translateX(-20px);
+  }
+
+  100% {
+    transform: translateX(200px);
+  }
+}
+
+@keyframes slide1 {
+  100% {
+    transform: translateX(200px);
+  }
+
+  0% {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes slideTransparency {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate1 {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fbmovement {
+  0%,
+  100% {
+    transform: translateX(-15px);
+  }
+
+  50% {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-150%) translateY(-100%) scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0) translateY(100) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(-50%) translateY(-70%) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-800%) translateY(-150%) scale(0.1);
+    opacity: 0;
+  }
+}
+
+
+/* Add transition for component loading */
+#header, #footer {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#header.component-loaded, 
+#footer.component-loaded {
+  opacity: 1;
+}

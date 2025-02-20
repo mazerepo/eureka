@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eureka</title>
+    <link rel="stylesheet" href="./output.css" />
+    <link rel="stylesheet" href="./styles/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <script defer src="./scripts/main.js"></script>
+    <script
+      defer
+      src="https://kit.fontawesome.com/b4b8be07f5.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      .content {
+        display: none;
+      }
+      .content.active {
+        display: block;
+      }
+      .tab.active {
+        color: blue;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+
+  <body class="dark:bg-dark dark:text-white transition-all duration-1000">
+    <!-- Navigation -->
+    <div
+      id="mini-nav-header"
+      class="container flex flex-col items-start justify-between py-10 gap-10 lg:flex-row lg:gap-20 lg:items-center"
+    >
+      <ul
+        class="flex items-start justify-start w-full gap-3 overflow-x-scroll md:w-10/12 md:gap-10 md:justify-between md:items-center hide-scrollbar"
+      >
+        <li
+          class="mini-nav cursor-pointer font-bold capitalize hover:text-primary opacity-80 whitespace-nowrap"
+        >
+          <a href="#trending" class="tab active">Trending Now</a>
+        </li>
+        <li
+          class="mini-nav cursor-pointer font-bold capitalize hover:text-primary opacity-80"
+        >
+          <a href="#technology" class="tab">Technology</a>
+        </li>
+        <!-- Add other categories -->
+      </ul>
+    </div>
+
+    <div class="container">
+      <!-- Template Container -->
+      <div id="content-container"></div>
+    </div>
+
+    <!-- Template -->
+    <template id="card-template">
+      <div class="card w-full max-w-[350px] space-y-4 text-[15px] m-5 p-5">
+        <div class="image-container w-full h-[240px]">
+          <img src="" alt="" class="w-full h-full object-cover" />
+        </div>
+        <div class="cardContent space-y-3">
+          <h4 class="font-bold"></h4>
+          <p class="opacity-50 text-[13px]"></p>
+          <h6 class="font-bold text-[11px]"></h6>
+          <a
+            href="#"
+            class="bg-primary rounded-[5px] p-2 font-bold text-white text-[12px] inline-flex items-center justify-between gap-x-2 hover:bg-opacity-85"
+          >
+            <span>Read article</span>
+            <span
+              class="border-2 border-white rounded-full inline-flex items-center w-4 h-4"
+            >
+              <i class="fa-solid fa-arrow-right text-[9px]"></i>
+            </span>
+          </a>
+        </div>
+      </div>
+    </template>
+
+    <script>
+      // Data Storage (Will be replaced with database fetch)
+      const categories = {
+        trending: [
+        {
+          title: "The revolution Ai Chatbot Training library for NodeJS",
+          content:
+            "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum tempore, numquam unde natus quidem tenetur aliquam cum dolore ex iste.",
+          image: "./images/programs/man.png",
+          date: "11 Npvember, 2023",
+          link: "https://mistech.io",
+          article:
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus laudantium, fuga maxime ex natus quo saepe facilis nam recusandae non aliquid voluptatum minus ipsa voluptatibus tempora, in amet. Vel fuga doloribus, quis ad nemo animi voluptatum dolorum aperiam similique, totam consequatur, vitae ratione illum adipisci minima repellat qui ipsa! Asperiores natus corrupti iste recusandae quidem quas, placeat, quis, maxime sapiente blanditiis assumenda nam suscipit distinctio aspernatur? Ut, incidunt facilis. Delectus accusamus, dolor ad obcaecati atque quas placeat explicabo consequatur facilis officia dolores enim molestias hic, magni cum numquam similique eos quod reprehenderit temporibus laudantium alias culpa natus est. Cumque, dolorum?",
+        },
+        {
+          title: "The revolution Ai Chatbot Training library for NodeJS",
+          content:
+            "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum tempore, numquam unde natus quidem tenetur aliquam cum dolore ex iste.",
+          image: "./images/programs/man.png",
+          date: "11 Npvember, 2023",
+          link: "https://mistech.io",
+          article:
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus laudantium, fuga maxime ex natus quo saepe facilis nam recusandae non aliquid voluptatum minus ipsa voluptatibus tempora, in amet. Vel fuga doloribus, quis ad nemo animi voluptatum dolorum aperiam similique, totam consequatur, vitae ratione illum adipisci minima repellat qui ipsa! Asperiores natus corrupti iste recusandae quidem quas, placeat, quis, maxime sapiente blanditiis assumenda nam suscipit distinctio aspernatur? Ut, incidunt facilis. Delectus accusamus, dolor ad obcaecati atque quas placeat explicabo consequatur facilis officia dolores enim molestias hic, magni cum numquam similique eos quod reprehenderit temporibus laudantium alias culpa natus est. Cumque, dolorum?",
+        },
+        {
+          title: "Tall women have longer life span compared to short women",
+          content:
+            "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum tempore, numquam unde natus quidem tenetur aliquam cum dolore ex iste.",
+          image: "./images/programs/ladies.png",
+          date: "11 Npvember, 2023",
+          link: "https://mistech.io",
+          article:
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus laudantium, fuga maxime ex natus quo saepe facilis nam recusandae non aliquid voluptatum minus ipsa voluptatibus tempora, in amet. Vel fuga doloribus, quis ad nemo animi voluptatum dolorum aperiam similique, totam consequatur, vitae ratione illum adipisci minima repellat qui ipsa! Asperiores natus corrupti iste recusandae quidem quas, placeat, quis, maxime sapiente blanditiis assumenda nam suscipit distinctio aspernatur? Ut, incidunt facilis. Delectus accusamus, dolor ad obcaecati atque quas placeat explicabo consequatur facilis officia dolores enim molestias hic, magni cum numquam similique eos quod reprehenderit temporibus laudantium alias culpa natus est. Cumque, dolorum?",
+        },
+        {
+          title: "The revolution Ai Chatbot Training library for NodeJS",
+          content:
+            "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum tempore, numquam unde natus quidem tenetur aliquam cum dolore ex iste.",
+          image: "./images/programs/man.png",
+          date: "11 Npvember, 2023",
+          link: "https://mistech.io",
+          article:
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus laudantium, fuga maxime ex natus quo saepe facilis nam recusandae non aliquid voluptatum minus ipsa voluptatibus tempora, in amet. Vel fuga doloribus, quis ad nemo animi voluptatum dolorum aperiam similique, totam consequatur, vitae ratione illum adipisci minima repellat qui ipsa! Asperiores natus corrupti iste recusandae quidem quas, placeat, quis, maxime sapiente blanditiis assumenda nam suscipit distinctio aspernatur? Ut, incidunt facilis. Delectus accusamus, dolor ad obcaecati atque quas placeat explicabo consequatur facilis officia dolores enim molestias hic, magni cum numquam similique eos quod reprehenderit temporibus laudantium alias culpa natus est. Cumque, dolorum?",
+        },
+        ],
+        technology: [
+        {
+          title: "TTall women have longer life span compared to short women",
+          content:
+            "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum tempore, numquam unde natus quidem tenetur aliquam cum dolore ex iste.",
+          image: "./images/programs/ladies.png",
+          date: "11 Npvember, 2023",
+          link: "https://mistech.io",
+          article:
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus laudantium, fuga maxime ex natus quo saepe facilis nam recusandae non aliquid voluptatum minus ipsa voluptatibus tempora, in amet. Vel fuga doloribus, quis ad nemo animi voluptatum dolorum aperiam similique, totam consequatur, vitae ratione illum adipisci minima repellat qui ipsa! Asperiores natus corrupti iste recusandae quidem quas, placeat, quis, maxime sapiente blanditiis assumenda nam suscipit distinctio aspernatur? Ut, incidunt facilis. Delectus accusamus, dolor ad obcaecati atque quas placeat explicabo consequatur facilis officia dolores enim molestias hic, magni cum numquam similique eos quod reprehenderit temporibus laudantium alias culpa natus est. Cumque, dolorum?",
+        },
+        {
+          title: "TechB",
+          content:
+            "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum tempore, numquam unde natus quidem tenetur aliquam cum dolore ex iste.",
+          image: "./images/programs/man.png",
+          date: "11 Npvember, 2023",
+          link: "https://mistech.io",
+          article:
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus laudantium, fuga maxime ex natus quo saepe facilis nam recusandae non aliquid voluptatum minus ipsa voluptatibus tempora, in amet. Vel fuga doloribus, quis ad nemo animi voluptatum dolorum aperiam similique, totam consequatur, vitae ratione illum adipisci minima repellat qui ipsa! Asperiores natus corrupti iste recusandae quidem quas, placeat, quis, maxime sapiente blanditiis assumenda nam suscipit distinctio aspernatur? Ut, incidunt facilis. Delectus accusamus, dolor ad obcaecati atque quas placeat explicabo consequatur facilis officia dolores enim molestias hic, magni cum numquam similique eos quod reprehenderit temporibus laudantium alias culpa natus est. Cumque, dolorum?",
+        },
+        {
+          title: "TechB",
+          content:
+            "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum tempore, numquam unde natus quidem tenetur aliquam cum dolore ex iste.",
+          image: "./images/programs/man.png",
+          date: "11 Npvember, 2023",
+          link: "https://mistech.io",
+          article:
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus laudantium, fuga maxime ex natus quo saepe facilis nam recusandae non aliquid voluptatum minus ipsa voluptatibus tempora, in amet. Vel fuga doloribus, quis ad nemo animi voluptatum dolorum aperiam similique, totam consequatur, vitae ratione illum adipisci minima repellat qui ipsa! Asperiores natus corrupti iste recusandae quidem quas, placeat, quis, maxime sapiente blanditiis assumenda nam suscipit distinctio aspernatur? Ut, incidunt facilis. Delectus accusamus, dolor ad obcaecati atque quas placeat explicabo consequatur facilis officia dolores enim molestias hic, magni cum numquam similique eos quod reprehenderit temporibus laudantium alias culpa natus est. Cumque, dolorum?",
+        },
+        {
+          title: "TeTall women have longer life span compared to short women",
+          content:
+            "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum tempore, numquam unde natus quidem tenetur aliquam cum dolore ex iste.",
+          image: "./images/programs/ladies.png",
+          date: "11 Npvember, 2023",
+          link: "https://mistech.io",
+          article:
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus laudantium, fuga maxime ex natus quo saepe facilis nam recusandae non aliquid voluptatum minus ipsa voluptatibus tempora, in amet. Vel fuga doloribus, quis ad nemo animi voluptatum dolorum aperiam similique, totam consequatur, vitae ratione illum adipisci minima repellat qui ipsa! Asperiores natus corrupti iste recusandae quidem quas, placeat, quis, maxime sapiente blanditiis assumenda nam suscipit distinctio aspernatur? Ut, incidunt facilis. Delectus accusamus, dolor ad obcaecati atque quas placeat explicabo consequatur facilis officia dolores enim molestias hic, magni cum numquam similique eos quod reprehenderit temporibus laudantium alias culpa natus est. Cumque, dolorum?",
+        },
+        {
+          title: "Tech",
+          content:
+            "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum tempore, numquam unde natus quidem tenetur aliquam cum dolore ex iste.",
+          image: "./images/programs/man.png",
+          date: "11 Npvember, 2023",
+          link: "https://mistech.io",
+          article:
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus laudantium, fuga maxime ex natus quo saepe facilis nam recusandae non aliquid voluptatum minus ipsa voluptatibus tempora, in amet. Vel fuga doloribus, quis ad nemo animi voluptatum dolorum aperiam similique, totam consequatur, vitae ratione illum adipisci minima repellat qui ipsa! Asperiores natus corrupti iste recusandae quidem quas, placeat, quis, maxime sapiente blanditiis assumenda nam suscipit distinctio aspernatur? Ut, incidunt facilis. Delectus accusamus, dolor ad obcaecati atque quas placeat explicabo consequatur facilis officia dolores enim molestias hic, magni cum numquam similique eos quod reprehenderit temporibus laudantium alias culpa natus est. Cumque, dolorum?",
+        },
+        {
+          title: "Tech",
+          content:
+            "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum tempore, numquam unde natus quidem tenetur aliquam cum dolore ex iste.",
+          image: "./images/programs/man.png",
+          date: "11 Npvember, 2023",
+          link: "https://mistech.io",
+          article:
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus laudantium, fuga maxime ex natus quo saepe facilis nam recusandae non aliquid voluptatum minus ipsa voluptatibus tempora, in amet. Vel fuga doloribus, quis ad nemo animi voluptatum dolorum aperiam similique, totam consequatur, vitae ratione illum adipisci minima repellat qui ipsa! Asperiores natus corrupti iste recusandae quidem quas, placeat, quis, maxime sapiente blanditiis assumenda nam suscipit distinctio aspernatur? Ut, incidunt facilis. Delectus accusamus, dolor ad obcaecati atque quas placeat explicabo consequatur facilis officia dolores enim molestias hic, magni cum numquam similique eos quod reprehenderit temporibus laudantium alias culpa natus est. Cumque, dolorum?",
+        },
+        ],
+      };
+
+      // Core Functions
+      function renderCards(category) {
+        const container = document.getElementById("content-container");
+        const template = document.getElementById("card-template");
+
+        // Clear previous content
+        container.innerHTML = "";
+
+        // Create section element
+        const section = document.createElement("div");
+        section.className = "content active";
+        section.id = category;
+
+        // Populate cards
+        categories[category].forEach((item) => {
+          const clone = template.content.cloneNode(true);
+          clone.querySelector("h4").textContent = item.title;
+          clone.querySelector("p").textContent = item.content;
+          clone.querySelector("h6").textContent = item.date;
+          clone.querySelector("img").src = item.image;
+          clone.querySelector("a").href = item.link;
+          section.appendChild(clone);
+        });
+
+        container.appendChild(section);
+      }
+
+      function showSection(category) {
+        // Update navigation
+        document.querySelectorAll(".tab").forEach((tab) => {
+          tab.classList.toggle(
+            "active",
+            tab.getAttribute("href") === `#${category}`
+          );
+        });
+
+        // Render content
+        renderCards(category);
+      }
+
+      // Event Listeners
+      document.addEventListener("DOMContentLoaded", () => {
+        // Handle initial load
+        const initialCategory = window.location.hash.substring(1) || "trending";
+        showSection(initialCategory);
+
+        // Handle navigation clicks
+        document.querySelectorAll(".tab").forEach((tab) => {
+          tab.addEventListener("click", function (e) {
+            e.preventDefault();
+            const category = this.getAttribute("href").substring(1);
+            window.location.hash = category;
+            showSection(category);
+          });
+        });
+
+        // Handle hash changes
+        window.addEventListener("hashchange", () => {
+          const category = window.location.hash.substring(1);
+          if (categories[category]) showSection(category);
+        });
+      });
+    </script>
+  </body>
+</html>
