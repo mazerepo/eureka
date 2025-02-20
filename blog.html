@@ -27,7 +27,7 @@ x<!DOCTYPE html>
       crossorigin="anonymous"
     ></script>
     <style>
-      #articlesList.active { display: block; }
+      #articlesList.active { display: flex; }
       #articlesList { display: none; }
       #articleDetail { display: none; }
       #articleDetail.active { display: block; }
@@ -37,40 +37,74 @@ x<!DOCTYPE html>
 
   <body class="dark:bg-dark dark:text-white transition-all duration-1000">
      <!-- Navigation -->
-    <div id="mini-nav-header" class="container">
-      <ul class="flex gap-3">
-        <li class="mini-nav">
-          <a href="#trending" class="tab active">Trending Now</a>
-        </li>
-        <li class="mini-nav">
-          <a href="#technology" class="tab">Technology</a>
-        </li>
-      </ul>
-    </div>
+     <div
+     id="mini-nav-header"
+     class="container flex flex-col items-start justify-between py-10 gap-10 lg:flex-row lg:gap-20 lg:items-center dark:bg-dark dark:text-white"
+   >
+     <ul
+       class="flex items-center gap-3 overflow-x-auto md:gap-10 hide-scrollbar dark:text-gray-300"
+     >
+       <li class="mini-nav">
+         <a
+           href="#trending"
+           class="tab active font-bold capitalize text-primary opacity-100 hover:text-primary-dark transition-colors duration-300 whitespace-nowrap"
+         >
+           Trending Now
+         </a>
+       </li>
+       <li class="mini-nav">
+         <a
+           href="#technology"
+           class="tab font-bold capitalize text-gray-600 opacity-80 hover:text-primary transition-colors duration-300 whitespace-nowrap dark:text-gray-400"
+         >
+           Technology
+         </a>
+       </li>
+     </ul>
+   </div>
 
     <!-- Articles List -->
-    <div id="articlesList" class="container active"></div>
+    <div
+  id="articlesList"
+  class="container active flex-wrap gap-8 items-center mb-8 md:items-start"
+></div>
 
     <!-- Article Detail -->
     <div id="articleDetail" class="hidden">
-      <button onclick="showArticleList()" class="back-btn">
-        ← Back to Articles
-      </button>
       <div id="detailContent"></div>
     </div>
 
 
   <!-- Template -->
   <template id="articleTemplate">
-    <div class="card">
-      <img src="" class="article-image" />
-      <div class="cardContent">
-        <h4 class="title"></h4>
-        <p class="excerpt"></p>
-        <h6 class="author"></h6>
-        <a class="read-more">
+    <div class="card w-full max-w-[350px] space-y-4 text-[15px] dark:bg-dark-card dark:text-white">
+      <!-- Image -->
+      <div class="image-container w-full h-[240px] overflow-hidden rounded-lg">
+        <img
+          src=""
+          alt=""
+          class="w-full h-full object-cover transition-transform duration-300 hover:scale-105 article-image"
+        />
+      </div>
+      <!-- Card Content -->
+      <div class="cardContent space-y-3">
+        <!-- Title -->
+        <h4 class="font-bold text-lg dark:text-gray-200 title"></h4>
+        <!-- Excerpt -->
+        <p class="opacity-70 text-sm dark:text-gray-400 excerpt"></p>
+        <!-- Author -->
+        <h6 class="font-bold text-xs dark:text-gray-300 author"></h6>
+        <!-- Read Article Button -->
+        <a
+          href="#"
+          class="bg-primary text-white text-[12px] font-bold py-2 px-4 rounded-md inline-flex items-center justify-between gap-x-2 hover:bg-opacity-85 transition-all duration-300 read-more dark:bg-blue-600 dark:hover:bg-blue-500"
+        >
           <span>Read article</span>
-          <span class="arrow-icon">→</span>
+          <span
+            class="border-2 border-white rounded-full w-4 h-4 flex items-center justify-center dark:border-gray-200 arrow-icon"
+          >
+            <i class="fa-solid fa-arrow-right text-[9px] text-white dark:text-gray-200"></i>
+          </span>
         </a>
       </div>
     </div>
@@ -110,6 +144,16 @@ x<!DOCTYPE html>
                   fullContent: "Full article content here...",
                   author: "Mike Doe",
                   readTime: "4 min read"
+              },
+              {
+                id: 4,
+                  title: "The future of AI and machine learning",
+                  content: "Lorem ipsum dolor sit amet...",
+                  image: "/images/programs/man.png",
+                  date: "8 November 2023",
+                  fullContent: "Full article content here...",
+                  author: "Mike Johnson",
+                  readTime: "2 min read"
               }
           ],
           technology: [
@@ -165,15 +209,38 @@ x<!DOCTYPE html>
         const detailContainer = document.getElementById('detailContent');
         
         detailContainer.innerHTML = `
-          <h1>${article.title}</h1>
-          <div class="meta">
-            <span>${article.author}</span>
-            <span>${article.date}</span>
-            <span>${article.readTime}</span>
-          </div>
-          <img src="${article.image}" alt="${article.title}">
-          <div class="content">${article.fullContent}</div>
-        `;
+    <div class="container flex flex-col items-center gap-8 w-full max-w-[1024px] mx-auto p-6 dark:bg-dark-card dark:text-white">
+      <!-- Back Button -->
+      <div class="w-full">
+        <button
+          onclick="showArticleList()"
+          class="text-primary uppercase font-bold hover:underline transition-all duration-300"
+        >
+          ← Back to Articles
+        </button>
+      </div>
+
+      <!-- Title -->
+      <h1 class="font-bold text-3xl uppercase text-center w-full">${article.title}</h1>
+
+      <!-- Meta Information -->
+      <div class="w-full flex flex-wrap gap-4 justify-center text-sm font-semibold dark:text-gray-300">
+        <span>Author: ${article.author}</span>
+        <span>Date: ${article.date}</span>
+        <span>Read Time: ${article.readTime}</span>
+      </div>
+
+      <!-- Image -->
+      <img
+        src="${article.image}"
+        alt="${article.title}"
+        class="w-full h-auto md:w-auto md:h-80 object-cover rounded-lg"
+      />
+
+      <!-- Content -->
+      <div class="content text-base text-justify">${article.fullContent}</div>
+    </div>
+  `;
 
         document.getElementById('articlesList').classList.remove('active');
         document.getElementById('articleDetail').classList.add('active');
